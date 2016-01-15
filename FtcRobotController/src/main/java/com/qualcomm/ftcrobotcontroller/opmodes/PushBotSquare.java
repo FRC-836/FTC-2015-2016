@@ -27,12 +27,11 @@ public class PushBotSquare extends LinearOpMode {
             leftMotor.setPower(1.0);
             rightMotor.setPower(1.0);
 
-            sleep(1000);
-
+            wait(1000);
             leftMotor.setPower(0.5);
             rightMotor.setPower(-0.5);
 
-            sleep(500);
+            wait(500);
         }
 
         leftMotor.setPowerFloat();

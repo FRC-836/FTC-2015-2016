@@ -17,11 +17,6 @@ Documentation for the FTC SDK are included with this repository.  There is a sub
 For technical questions regarding the SDK, please visit the FTC Technology forum:
 
   http://ftcforum.usfirst.org/forumdisplay.php?156-FTC-Technology
-  
-API Documentation Here: <br>
-https://rawgit.com/FRC-836/FTC-2015-2016/master/doc/javadoc/index.html <br>
-http://developer.android.com/reference/packages.html <br>
-https://docs.oracle.com/javase/8/docs/api/ <br>
 
 **************************************************************************************
 
