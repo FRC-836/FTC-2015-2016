@@ -26,6 +26,7 @@ public class testarOP extends OpMode {
     DcMotor motorRobodaddy;
     DcMotor motorRight;
     DcMotor motorLeft;
+    DcMotor motorStinger;
 
     /**
      * Constructor
@@ -53,20 +54,21 @@ public class testarOP extends OpMode {
 		 *   "motor_1" is on the right side of the bot.
 		 *   "motor_2" is on the left side of the bot.
 		 */
-        servonuke = hardwareMap.servo.get("nuke");
+        servonuke = hardwareMap.servo.get("nuke"); // servo
         motormobydick = hardwareMap.dcMotor.get("mobydick");
-        motorKnight = hardwareMap.dcMotor.get("knightsrule");
+        motorKnight = hardwareMap.dcMotor.get("knightsrule"); //angle thing
         motorRobodaddy = hardwareMap.dcMotor.get("robodaddy69");
+        motorStinger = hardwareMap.dcMotor.get("Stinger");
         motorRight = hardwareMap.dcMotor.get("motor_2"); //motor 2 is right motor
         motorLeft = hardwareMap.dcMotor.get("motor_1");
-        motorLeft.setDirection(DcMotor.Direction.REVERSE);
-
+        motorRight.setDirection(DcMotor.Direction.REVERSE);
+        motorKnight.setDirection(DcMotor.Direction.REVERSE);
     }
 
     /*
      * This method will be called repeatedly in a loop
      *the robodaddy and mobydick have been made by ultron
-     * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#run()
+      * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#run()
      */
     @Override
     public void loop() {
@@ -80,10 +82,9 @@ public class testarOP extends OpMode {
 
         // tank drive
         // note that if y equal -1 then joystick is pushed all of the way forward.
-        float nuke;
-        float mobydick;
-        float knight;
-        float robodaddy;
+        double nuke;
+        double mobydick; //egg
+        double robodaddy; //claw
 
         if (gamepad1.dpad_up) {
             mobydick = 1;
@@ -93,42 +94,37 @@ public class testarOP extends OpMode {
             mobydick = 0;
         }
 
-        if (gamepad1.y) {
-            nuke = 180;
-        } else if(gamepad1.a) {
-            nuke = 0;
+        if (gamepad2.x) {
+            nuke = 1;
         } else {
-            nuke = 0;
+            nuke = (float) 0.4;
         }
 
         if (gamepad1.right_bumper) {
-            knight = 1;
-        } else if(0 < gamepad1.right_trigger) {
-            knight = -1;
-        } else {
-            knight = 0;
-        }
-
-
-        if (gamepad1.left_bumper) {
            robodaddy = 1;
-        } else if(0 < gamepad1.left_trigger) {
+        } else if(gamepad1.left_bumper) {
             robodaddy = -1;
         } else {
             robodaddy= 0;
         }
 
-        float left = -gamepad1.left_stick_y;
-        float right = -gamepad1.right_stick_y;
-
+        double left = gamepad1.left_stick_y;
+        double right = gamepad1.right_stick_y;
+        double stinger = gamepad2.left_stick_y;
+        double knight = gamepad2.right_stick_y;
+        
         // clip the right/left values so that the values never exceed +/- 1
         right = Range.clip(right, -1, 1);
         left = Range.clip(left, -1, 1);
-
+        stinger = Range.clip(stinger, -1, 1);
+        knight = Range.clip(knight, -1, 1);
+        
         // scale the joystick value to make it easier to control
         // the robot more precisely at slower speeds.
         right = (float)scaleInput(right);
         left =  (float)scaleInput(left);
+        stinger = (float)scaleInput(stinger);
+        knight = (float)scaleInput(knight);
 
         // write the values to the motors
         servonuke.setPosition(nuke);
@@ -137,6 +133,7 @@ public class testarOP extends OpMode {
         motorRobodaddy.setPower(robodaddy);
         motorRight.setPower(right);
         motorLeft.setPower(left);
+        motorStinger.setPower(stinger);
 
         // clip the position values so that they never exceed their allowed range.
         // armPosition = Range.clip(armPosition, ARM_MIN_RANGE, ARM_MAX_RANGE);

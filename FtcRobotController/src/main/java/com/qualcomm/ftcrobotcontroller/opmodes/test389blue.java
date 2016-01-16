@@ -1,22 +1,23 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.Servo;
 
-/*
- * An example linear op mode where the pushbot
- * will drive in a square pattern using sleep()
- * and a for loop.
+/**
+ * Created by David Buddenbohn on 1/16/2016.
  */
-public class testIsmail extends LinearOpMode {
-    Servo servonuke;
-    DcMotor motormobydick;
-    DcMotor motorKnight;
-    DcMotor motorRobodaddy;
-    DcMotor motorRight;
-    DcMotor motorLeft;
-    DcMotor motorStinger;
+public class test389blue extends LinearOpMode {
+
+Servo servonuke;
+DcMotor motormobydick;
+DcMotor motorKnight;
+DcMotor motorRobodaddy;
+DcMotor motorRight;
+DcMotor motorLeft;
+DcMotor motorStinger;
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -29,19 +30,19 @@ public class testIsmail extends LinearOpMode {
         motorLeft = hardwareMap.dcMotor.get("motor_1");
 
 
-    waitForStart();
-        sleep(10000);
+        waitForStart();
+
         motorRight.setPower(1);
+        motorLeft.setPower(1);
+        sleep(3000);
+        motorRight.setPower(0);
         motorLeft.setPower(1);
         sleep(1000);
         motorRight.setPower(1);
-        motorLeft.setPower(0);
-        sleep(1000);
-        motorRight.setPower(1);
         motorLeft.setPower(1);
         sleep(1000);
-        motorRight.setPower(1);
-        motorLeft.setPower(0);
+        motorRight.setPower(0);
+        motorLeft.setPower(1);
         sleep(1000);
         motorRight.setPower(1);
         motorLeft.setPower(1);
@@ -63,4 +64,3 @@ public class testIsmail extends LinearOpMode {
         motorLeft.setPowerFloat();
     }
 }
-
